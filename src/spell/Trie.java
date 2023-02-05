@@ -83,13 +83,13 @@ public class Trie implements ITrie{
         if(node1.getValue() != node2.getValue()) {
             return false;
         }
-        for (int i = 0; i < node1.getChildren().length; i++) {
-            if (node1.getChildren()[i] != null || node2.getChildren()[i] != null) {
-                if (node1.getChildren()[i] != null && node2.getChildren()[i] != null) {
-                    if (!equals_Helper(node1.getChildren()[i], node2.getChildren()[i])) {
-                        return false;
-                    }
-                } else {
+        for(int i = 0; i < node1.getChildren().length; i++) {
+            if ((node1.getChildren()[i] != null && node2.getChildren()[i] == null) ||
+                    (node1.getChildren()[i] == null && node2.getChildren()[i] != null)) {
+                return false;
+            }
+            if(node1.getChildren()[i] != null && node2.getChildren()[i] != null) {
+                if (!equals_Helper(node1.getChildren()[i], node2.getChildren()[i])) {
                     return false;
                 }
             }
